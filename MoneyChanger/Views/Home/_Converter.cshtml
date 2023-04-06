@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Money Changer";
+}
+
+<fieldset>
+    <div class="container position-absolute top-50 start-50 translate-middle shadow">
+        <div class="row justify-content-center">
+            <div class="col-md-6 image">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                @using (@Html.BeginForm("Convert", "Home", FormMethod.Post, new { id = "currency_conversion" }))
+                {
+                    <h2 class="text-center my-5">Money Changer</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-6 align-items-center p-3">
+                            <h5 class="text-center mb-3">From</h5>
+                            <select class="form-select text-center" name="fromCurrency">
+                                @foreach (var currency in ViewBag.CurrencyList)
+                                {
+                                    <option value="@currency">@currency</option>
+                                }
+                            </select>
+
+                            <div class="mt-5">
+                                <label for="inputAmount" class="form-label">Input Amount</label>
+                                <input type="number" class="form-control" id="inputAmount" name="sourceVal" placeholder="0" required min="1">
+                            </div>
+
+                        </div>
+                        <div class="col-6 align-items-center p-3">
+                            <h5 class="text-center mb-3">To</h5>
+                            <select class="form-select text-center" name="toCurrency">
+                                @foreach (var currency in ViewBag.CurrencyList)
+                                {
+                                    <option value="@currency">@currency</option>
+                                }
+                            </select>
+
+                            <div class="mt-5">
+                                <label for="convertedAmount" class="form-label">Conversion Result</label>
+                                <input type="number" class="form-control" id="convertedAmount" disabled value=@ViewBag.resVal>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-4 d-md-flex justify-content-center my-5">
+                        <button class="btn btn-light btn-lg px-4" type="button" onclick="location.href='Home/Index'">Swap</button>
+                        <button class="btn btn-primary btn-lg px-4" type="submit">Convert</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</fieldset>
