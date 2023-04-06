@@ -33,7 +33,11 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         ViewBag.currencyList = _currencyList;
-        ViewBag.resVal = Global.CurrencyResult.resultAmount != null ? Global.CurrencyResult.resultAmount : "";
+        ViewBag.fromCurrency = Global.FromCurrency;
+        ViewBag.toCurrency = Global.ToCurrency;
+        ViewBag.sourceVal = Global.SourceAmount;
+        ViewBag.resVal = Global.ResultAmount;
+        ViewBag.isLoading = Global.IsLoading;
         return View();
     }
 
@@ -50,7 +54,15 @@ public class HomeController : Controller
             ExchangeResponse resp = GetResp(reader.ReadToEnd());
             if (resp.success)
             {
-                Global.CurrencyResult.resultAmount = resp.result.ToString();
+                Global.FromCurrency = fromCurrency;
+                Global.ToCurrency = toCurrency;
+                Global.SourceAmount = sourceVal;
+                Global.ResultAmount = resp.result.ToString();
+                Global.IsLoading = false;
+            }
+            else
+            {
+                Global.IsLoading = true;
             }
         }
         return RedirectToAction("Index");

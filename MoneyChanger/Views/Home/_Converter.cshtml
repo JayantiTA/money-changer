@@ -17,13 +17,21 @@
                             <select class="form-select text-center" name="fromCurrency">
                                 @foreach (var currency in ViewBag.CurrencyList)
                                 {
-                                    <option value="@currency">@currency</option>
-                                }
+                                    @if (currency == ViewBag.fromCurrency)
+                                    {
+                                        <option value="@currency" selected>@currency</option>
+                                    }
+                                    else
+                                    {
+
+                                        <option value="@currency">@currency</option>
+                                    }
+                               }
                             </select>
 
                             <div class="mt-5">
                                 <label for="inputAmount" class="form-label">Input Amount</label>
-                                <input type="number" class="form-control" id="inputAmount" name="sourceVal" placeholder="0" required min="1">
+                                <input type="number" class="form-control" id="inputAmount" name="sourceVal" value="@ViewBag.sourceVal" required min="1">
                             </div>
 
                         </div>
@@ -32,18 +40,25 @@
                             <select class="form-select text-center" name="toCurrency">
                                 @foreach (var currency in ViewBag.CurrencyList)
                                 {
-                                    <option value="@currency">@currency</option>
+                                    @if (currency == ViewBag.toCurrency)
+                                    {
+                                        <option value="@currency" selected>@currency</option>
+                                    }
+                                    else
+                                    {
+
+                                        <option value="@currency">@currency</option>
+                                    }
                                 }
                             </select>
 
                             <div class="mt-5">
                                 <label for="convertedAmount" class="form-label">Conversion Result</label>
-                                <input type="number" class="form-control" id="convertedAmount" disabled value=@ViewBag.resVal>
+                                <input class="form-control" id="convertedAmount" disabled value=@ViewBag.resVal>
                             </div>
                         </div>
                     </div>
                     <div class="d-grid gap-4 d-md-flex justify-content-center my-5">
-                        <button class="btn btn-light btn-lg px-4" type="button" onclick="location.href='Home/Index'">Swap</button>
                         <button class="btn btn-primary btn-lg px-4" type="submit">Convert</button>
                     </div>
                 }

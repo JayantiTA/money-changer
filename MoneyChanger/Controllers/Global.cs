@@ -1,26 +1,44 @@
 ﻿using System;
 namespace MoneyChanger.Controllers
 {
-	public static class Global
-	{
-        public static class CurrencyResult
-        {
-            public static string resultAmount { get; set; }
-            public static string sourceAmount { get; set; }
-            public static string fromCurrency { get; set; }
-            public static string toCurrency { get; set; }
-        }
-        static string? _resVal, _sourceVal, _fromCurrency, _toCurrency;
-        public static string ResultAmount
-        {
+    public static class Global
+    {
+        static bool _isLoading;
+        static string _resultAmount, _sourceAmount, _fromCurrency, _toCurrency;
 
+        public static bool IsLoading
+        {
             get
             {
-                return _resVal;
+                return _isLoading;
             }
             set
             {
-                _resVal = value;
+                _isLoading = value;
+            }
+        }
+
+        public static string ResultAmount
+        {
+            get
+            {
+                return _resultAmount;
+            }
+            set
+            {
+                _resultAmount = value;
+            }
+        }
+
+        public static string SourceAmount
+        {
+            get
+            {
+                return _sourceAmount;
+            }
+            set
+            {
+                _sourceAmount = value;
             }
         }
 
@@ -32,7 +50,7 @@ namespace MoneyChanger.Controllers
             }
             set
             {
-                _fromCurrency = value; 
+                _fromCurrency = value;
             }
         }
 
