@@ -1,5 +1,5 @@
 ﻿using System;
-namespace MoneyChanger.Controllers
+namespace MoneyChanger.Models
 {
     public static class Global
     {
